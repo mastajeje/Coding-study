@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="user" />
+      </div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Me</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <!-- menu slider -->
+      <button id="toggle" class="toggle">
+        <i class="fa fa-bars fa-2x"></i>
+      </button>
+
+      <h1>Menu Slider & Modal Practice Page</h1>
+      <p>created to practice menu slider and modal</p>
+
+      <button class="modalBtn" id="open">Modal</button>
+    </header>
+
+    <main class="container">
+      <h2>Menu Slider</h2>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse labore in
+        ad ullam excepturi laborum fugit nostrum asperiores magni architecto!
+      </p>
+
+      <h2>Modal</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque totam
+        praesentium, minus voluptatem enim quos alias consectetur vitae, officia
+        neque illo repudiandae adipisci explicabo, vero ipsam dolorem? Iusto,
+        hic eius.
+      </p>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal__container" id="modal">
+      <div class="modal">
+        <button class="closeBtn" id="close">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="modal__header">
+          <h3>Modal Page</h3>
+        </div>
+        <div class="modal__content">
+          <p>This is a testing modal page with a form</p>
+          <form class="modal__form">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Enter Name" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter email" />
+            </div>
+            <input type="submit" value="Submit" class="submit__btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
