@@ -14,6 +14,12 @@
 body {
   font-family: "Lato", sans-serif;
   margin: 0;
+  transition: transform 0.3s ease;
+}
+
+body.show-nav {
+  /* this 200px is width of the nav!! */
+  transform: translateX(200px);
 }
 
 nav {
@@ -26,7 +32,7 @@ nav {
   width: 200px;
   height: 100vh;
   z-index: 100;
-  /* transform: translateX(-100%); */
+  transform: translateX(-100%);
 }
 
 nav .logo {
@@ -59,4 +65,123 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.25rem;
+  /* toggle button(hamburger) will be relative to this header */
+  position: relative;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+button,
+input[type="submit"] {
+  background-color: var(--secondary-color);
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.toggle {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}
+
+.modalBtn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.container {
+  padding: 15px;
+  margin: 0 auto;
+  width: 800px;
+  max-width: 100%;
+}
+
+.modal__container {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  /* how to cover entire page */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal__container.show-modal {
+  display: block;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  width: 400px;
+  animation-name: modalOpen;
+  animation-duration: var(--modal-duration);
+}
+
+.modal__header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+}
+
+.modal__header h3 {
+  margin: 0;
+}
+
+.modal__content {
+  padding: 10px;
+}
+
+.modal__form div {
+  margin: 15px 0;
+}
+
+.modal__form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal__form .form__input {
+  padding: 8px;
+  width: 100%;
+}
+
+.closeBtn {
+  background-color: transparent;
+  font-size: 1.6rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
