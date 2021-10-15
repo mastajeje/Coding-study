@@ -17,10 +17,12 @@
   width: 100%;
   height: 500px;
   opacity: 0.9;
+background-color:yellow;
 }
 
 .calrousel__slide img {
   width: 1000px;
+border: 100px solid black;
 }
 
 #prevBtn {
