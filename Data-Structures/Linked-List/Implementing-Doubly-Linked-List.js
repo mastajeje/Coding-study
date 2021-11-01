@@ -40,6 +40,33 @@ class LinkedList {
     return this;
   };
 
+  insert = (index, value) => {
+    const newNode = {
+      value,
+      next: null,
+      prev: null,
+    };
+
+    const beforeTarget = this.lookupToIndex(index - 1);
+    const afterTarget = this.lookupToIndex(index + 1);
+    newNode.next = afterTarget;
+    newNode.prev = beforeTarget;
+    beforeTarget.next = newNode;
+    afterTarget.prev = newNode;
+    console.log(this);
+    return this;
+  };
+
+  lookupToIndex = (index) => {
+    let counter = 0;
+    let currentNode = this.head;
+    while (counter !== index) {
+      currentNode = currentNode.next;
+      counter++;
+    }
+    return currentNode;
+  };
+
   printList = () => {
     const array = [];
     let currentNode = this.head;
@@ -57,6 +84,7 @@ DLinkedList.append(5);
 DLinkedList.append(16);
 DLinkedList.prepend(100);
 DLinkedList.prepend(200);
-
+DLinkedList.insert(1, 123);
+// DLinkedList.insert(2, 1234);
 console.log(DLinkedList);
 console.log(DLinkedList.printList());

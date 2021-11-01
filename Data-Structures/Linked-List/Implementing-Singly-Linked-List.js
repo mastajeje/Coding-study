@@ -112,6 +112,27 @@ class LinkedList {
     this.length--;
     return this.printList();
   }
+
+  reverse = () => {
+    if (!this.head.next) {
+      return this.head;
+    }
+
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+
+    while (second) {
+      let temp = second.next;
+      second.next = first;
+      // next two steps are to move to next loop
+      first = second;
+      second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this;
+  };
 }
 
 const myLinkedList = new LinkedList(10);
@@ -119,12 +140,14 @@ myLinkedList.append(5);
 myLinkedList.prepend(1);
 myLinkedList.prepend(2);
 // console.log(myLinkedList.insert(0, 20));
-console.log(myLinkedList.insert(1, 200));
-console.log(myLinkedList.insert(1, 20));
+myLinkedList.insert(1, 200);
+myLinkedList.insert(1, 20);
 
 // console.log(myLinkedList.remove(3), myLinkedList, "b");
 // console.log(myLinkedList.remove(2), myLinkedList, "b");
 // myLinkedList.remove(0);
 // myLinkedList.remove(1);
 
+console.log(myLinkedList.printList());
+myLinkedList.reverse();
 console.log(myLinkedList.printList());
