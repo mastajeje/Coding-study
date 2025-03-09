@@ -1,29 +1,50 @@
-const combinations = (arr, n) => {
-  if (n === 1) return arr.map((v) => [v]);
+const getCombinations = (arr, r) => {
+  if (r === 1) return arr.map((v) => [v]);
   const result = [];
 
-  arr.forEach((fixed, idx, arr) => {
-    const rest = arr.slice(idx + 1);
-    const combis = combinations(rest, n - 1);
-    console.log(combis, n);
-    const combine = combis.map((v) => [fixed, ...v]);
-    result.push(...combine);
+  arr.forEach((fixed, index, origin) => {
+    const rest = origin.slice(index + 1);
+    const combinations = getCombinations(rest, r - 1);
+    const combined = combinations.map((v) => [fixed, ...v]);
+    result.push(...combined);
   });
-  //   return result;
-};
-
-const solution = (input) => {
-  let result = [];
-  const k = 3;
-  for (i = 0; i < input.length; i++) {
-    for (j = i + k - 1; j < input.length; j++) {
-      console.log(`${input[i]}${input[i + 1]}${input[j]}`);
-    }
-  }
 
   return result;
 };
 
-// console.log(solution(["a", "b", "c", "d", "e", "f"]));
+const solution = (orders, course) => {
+  let result = [];
 
-console.log(combinations(["a", "b", "c", "d", "e", "f"], 2));
+  course.forEach((numberOfMenu) => {
+    let menu = [];
+    orders.forEach((order) => {
+      const orderArr = order.split("").sort();
+
+      const menuCombis = getCombinations(orderArr, numberOfMenu);
+      menu.push(...menuCombis);
+    });
+
+    const counter = {};
+    for (const m of menu) {
+      const key = m.join("");
+      counter[key] = (counter[key] || 0) + 1;
+    }
+
+    const max = Math.max(...Object.values(counter));
+    if (max === 1) return;
+    for (const key of Object.keys(counter)) {
+      if (counter[key] === max) {
+        result.push(key);
+      }
+    }
+  });
+
+  return result.sort();
+};
+
+console.log(
+  solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2, 3, 4])
+);
+//expected: ["AC","ACDE","BCFG","CDE"]
+console.log(solution(["XYZ", "XWY", "WXA"], [2, 3, 4]));
+//expected: ["WX", "XY"]
