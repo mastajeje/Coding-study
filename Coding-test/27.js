@@ -44,7 +44,7 @@ class BST {
       if (key < curr.val) {
         curr = curr.left;
       } else {
-        curr.right;
+        curr = curr.right;
       }
     }
     return curr;
@@ -54,7 +54,10 @@ class BST {
 const solution = (lst, searchList) => {
   const result = [];
   const bst = new BST();
-  lst.forEach((value) => bst.insert(value));
+  //   lst.forEach((value) => bst.insert(value));
+  for (const key of lst) {
+    bst.insert(key);
+  }
 
   for (const searchVal of searchList) {
     if (bst.search(searchVal)) {
