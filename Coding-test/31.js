@@ -1,25 +1,61 @@
 // 1st solution
-function solution(info, edges) {
-  let maxSheep = 0;
-  const graph = Array.from({ length: info.length }, () => []);
+// function solution(info, edges) {
+//   let maxSheep = 0;
+//   const graph = Array.from({ length: info.length }, () => []);
 
-  for (const [parent, child] of edges) {
-    graph[parent].push(child);
-  }
+//   for (const [parent, child] of edges) {
+//     graph[parent].push(child);
+//   }
+
+//   const dfs = (sheep, wolf, visited) => {
+//     if (sheep <= wolf) return;
+//     maxSheep = Math.max(maxSheep, sheep);
+
+//     for (let i = 0; i < visited.length; i++) {
+//       let node = visited[i];
+
+//       for (let next of graph[node]) {
+//         if (!visited.includes(next)) {
+//           let newVisited = [...visited, next];
+//           dfs(
+//             sheep + (info[next] === 0 ? 1 : 0),
+//             wolf + (info[next] === 1 ? 1 : 0),
+//             newVisited
+//           );
+//         }
+//       }
+//     }
+//   };
+//   dfs(1, 0, [0]);
+
+//   return maxSheep;
+// }
+
+//2nd solution
+const solution = (info, edges) => {
+  const graph = Array.from({ length: info.length }, () => []);
+  let maxSheep = 0;
+  // for (const [parent, child] of edges) {
+  //   graph[parent].push(child);
+  // }
+
+  edges.forEach((edge) => {
+    graph[edge[0]].push(edge[1]);
+  });
 
   const dfs = (sheep, wolf, visited) => {
     if (sheep <= wolf) return;
     maxSheep = Math.max(maxSheep, sheep);
 
     for (let i = 0; i < visited.length; i++) {
-      let node = visited[i];
+      const node = visited[i];
 
-      for (let next of graph[node]) {
+      for (const next of graph[node]) {
         if (!visited.includes(next)) {
-          let newVisited = [...visited, next];
+          const newVisited = [...visited, next];
           dfs(
-            sheep + (info[next] === 0 ? 1 : 0),
-            wolf + (info[next] === 1 ? 1 : 0),
+            info[next] === 0 ? sheep + 1 : sheep,
+            info[next] === 1 ? wolf + 1 : wolf,
             newVisited
           );
         }
@@ -27,9 +63,10 @@ function solution(info, edges) {
     }
   };
   dfs(1, 0, [0]);
+  // console.log(graph);
 
   return maxSheep;
-}
+};
 
 console.log(
   solution(
